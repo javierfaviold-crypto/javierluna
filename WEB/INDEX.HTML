@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Los 18 de LU en Güerrin!</title>
+    <!-- Importando fuentes para darle el toque clásico y porteño -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --guerrin-red: #D31027;
+            --guerrin-dark-red: #8B0000;
+            --cream: #FDFBF7;
+            --dark-text: #2C2C2C;
+            --gold: #FFD700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1a1a1a; /* Fondo oscuro imitando la noche porteña */
+            background-image: radial-gradient(circle at 50% 0%, #333 0%, #111 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark-text);
+        }
+
+        .card {
+            background-color: var(--cream);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(211, 16, 39, 0.2);
+            position: relative;
+        }
+
+        /* El toldo a rayas rojas y blancas clásico de las pizzerías */
+        .awning {
+            height: 30px;
+            background: repeating-linear-gradient(
+                135deg,
+                var(--guerrin-red),
+                var(--guerrin-red) 20px,
+                #ffffff 20px,
+                #ffffff 40px
+            );
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            background-color: var(--guerrin-red);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--guerrin-dark-red);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--gold),
+                var(--gold) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+
+        .pre-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #FFD700;
+        }
+
+        .title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            line-height: 1.1;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title span {
+            font-size: 3.5rem;
+            display: block;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px var(--gold); /* Efecto cartel luminoso */
+        }
+
+        .subtitle {
+            font-family: 'Lobster', cursive;
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: white;
+        }
+
+        .content {
+            padding: 30px 25px;
+            text-align: center;
+            background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="%23e0e0e0"/></svg>'); /* Textura sutil */
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            font-weight: 400;
+            color: #444;
+        }
+
+        .pizzeria-name {
+            font-family: 'Lobster', cursive;
+            font-size: 1.6rem;
+            color: var(--guerrin-red);
+            display: inline-block;
+            transform: rotate(-2deg);
+        }
+
+        .details-box {
+            background-color: white;
+            border: 2px dashed var(--guerrin-red);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-icon {
+            font-size: 1.3rem;
+            margin-right: 12px;
+            line-height: 1.2;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .detail-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .detail-text strong {
+            display: block;
+            color: var(--guerrin-red);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .footer {
+            background-color: var(--dark-text);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-top: 4px solid var(--gold);
+        }
+
+        .pizza-emoji {
+            display: inline-block;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Luces de marquesina decorativas */
+        .lights {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            background: #111;
+        }
+
+        .light-bulb {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px #FFD700;
+            animation: blink 1.5s infinite alternate;
+        }
+
+        .light-bulb:nth-child(even) {
+            animation-delay: 0.75s;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.4; box-shadow: 0 0 2px 0px #FFD700; }
+            100% { opacity: 1; box-shadow: 0 0 10px 3px #FFD700; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Toldo rojo y blanco -->
+        <div class="awning"></div>
+        
+        <!-- Luces de marquesina -->
+        <div class="lights">
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+        </div>
+
+        <div class="header">
+            <div class="pre-title">¡Festejamos los 18 de!</div>
+            <h1 class="title"><span>LU</span></h1>
+            <div class="subtitle">en un clásico porteño 🍕🎉</div>
+        </div>
+
+        <div class="content">
+            <p class="intro-text">
+                No hay mejor lugar para brindar por la mayoría de edad que entre muzzarella y fainá. Te esperamos para compartir una noche inolvidable en la mítica <span class="pizzeria-name">Pizzería Güerrin</span>.
+            </p>
+
+            <div class="details-box">
+                <div class="detail-item">
+                    <div class="detail-icon">📅</div>
+                    <div class="detail-text">
+                        <strong>Cuándo</strong>
+                        Jueves 9 de Abril
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">⏰</div>
+                    <div class="detail-text">
+                        <strong>Hora</strong>
+                        20:30 horas
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">📍</div>
+                    <div class="detail-text">
+                        <strong>Lugar</strong>
+                        Pizzería Güerrin<br>
+                        <small>(Av. Corrientes 1368)</small>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-icon">✨</div>
+                    <div class="detail-text">
+                        <strong>Punto de encuentro</strong>
+                        Nos vemos directamente en la puerta (¡busquen el cartel luminoso!).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            ¡No faltes, que la fugazzeta no se come sola! <span class="pizza-emoji">🍕</span>
+        </div>
+    </div>
+
+</body>
+</html>
